@@ -4,7 +4,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0" />
-  <title>BezKoder - Spring Boot Thymeleaf example</title>
+  <title>Spring Boot Thymeleaf example</title>
 
   <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
   <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
@@ -46,7 +46,16 @@
             </div>
             <select form="searchForm" name="size" th:value="${pageSize}" onchange="changePageSize()" class="size-select"
               id="pageSize">
-              <option th:each="s : ${ {3, 6, 9} }" th:value="${s}" th:text="${s}" th:selected="${s == pageSize}"></option>
+              <option th:each="s : ${ {10, 20, 30} }" th:value="${s}" th:text="${s}" th:selected="${s == pageSize}"></option>
+            </select>
+          </div>
+           <div class="col-md-3 input-group mt-2">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="testType">Report Type:</label>
+            </div>
+            <select form="searchForm" name="testType" th:value="${testType}" onchange="changeTest()" class="form-select"
+              id="testType">
+              <option th:each="d : ${ {'test1', 'test2', 'test3'} }" th:value="${d}" th:text="${d}" th:selected="${d == testType}"></option>
             </select>
           </div>
           <div class="col-md-1 mt-2">
@@ -168,6 +177,9 @@
     });
 
     function changePageSize() {
+      $("#searchForm").submit();
+    }
+    function changeTest() {
       $("#searchForm").submit();
     }
   </script>
